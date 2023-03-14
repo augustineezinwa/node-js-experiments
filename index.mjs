@@ -1,4 +1,4 @@
-// import fs from 'fs/promises';
+import fs from 'fs';
 
  
 //  const readFile = async () => {
@@ -41,10 +41,17 @@ const obj = {
     "lastName": "luanhask"
 }
 
+
+// const server = http.createServer((req, res) => {
+//   res.writeHead(200, { "Content-type": "application/json"});
+//   res.end(JSON.stringify(obj));
+// })
+
 const server = http.createServer((req, res) => {
-  res.writeHead(200, { "Content-type": "application/json"});
-  res.end(JSON.stringify(obj));
-})
+    res.writeHead(200, { "Content-type": "text/html"});
+    //res.end(fs.readFileSync("index.html", "utf-8"));
+    fs.ReadStream("./index.html").pipe(res);
+  })
 
 server.listen(3000, () => console.log("server is listening on port 3000"));
 
