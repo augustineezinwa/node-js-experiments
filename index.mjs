@@ -14,22 +14,39 @@
 
 // -------------------------------------------------------------------------
 
-import fs from 'fs';
-import zlib from 'zlib';
+// import fs from 'fs';
+// import zlib from 'zlib';
 
-const gzip = zlib.createGzip();
+// const gzip = zlib.createGzip();
 
-const readableStream = fs.createReadStream("./file.txt", { encoding: "utf-8"});
-const writableStream = fs.createWriteStream("./file2.txt");
+// const readableStream = fs.createReadStream("./file.txt", { encoding: "utf-8"});
+// const writableStream = fs.createWriteStream("./file2.txt");
 
 // readableStream.on("data", (chunk) => {
 //     console.log(chunk);
 //     writableStream.write(chunk);
 // });
 
-readableStream.pipe(gzip).pipe(fs.WriteStream("./file2.txt.gz"));
+// readableStream.pipe(gzip).pipe(fs.WriteStream("./file2.txt.gz"));
 
-readableStream.pipe(writableStream);
+// readableStream.pipe(writableStream);
+
+// --------------------------------------------------------------------------------
+
+import http from 'http';
+
+const obj = {
+    "id": 1,
+    "firstName": "donkey",
+    "lastName": "luanhask"
+}
+
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { "Content-type": "application/json"});
+  res.end(JSON.stringify(obj));
+})
+
+server.listen(3000, () => console.log("server is listening on port 3000"));
 
   
    
